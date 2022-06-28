@@ -1,0 +1,75 @@
+ALGORITHM fulfills
+VAR
+     tab1 : ARRAY_OF INTEGER[5];
+     tab2 : ARRAY_OF INTEGER[4];
+     i,j,sum,x : INTEGER ;
+BEGIN
+
+     tab1 := {1,2,3,5,7,8};
+     tab2 := {9,2,6,4,5} ;
+     sum := 0 ;
+     i:= 0;
+     j :=0;
+     x:= 0;
+     FOR i FROM 0 TO tab1.length-1 STEP step 1 DO
+
+        IF (tab1[i]<> tab2[j]) THEN
+            x:= x+ tab1[i] ;
+            else
+                x:=0;
+        END_IF
+        sum := sum + x 
+        i := i+1
+     END_FOR
+     FOR j FROM 0 TO tab2.length-1 STEP step 1 DO
+
+        IF (tab2[j]<> tab1[i]) THEN
+            x:= x+ tab2[j] ;
+            else
+                x := 0;
+        END_IF
+        sum := sum + x 
+        j := j+1
+     END_FOR
+    Read (sum)
+
+     
+
+END
+ALGORITHM tab2
+VAR
+    tab1 : ARRAY_OF INTEGER[a];
+    tab2 : ARRAY_OF INTEGER[b];
+    htab : HASH_TABLE<INTEGER,INTEGER>;
+    i,j,a,b,el : INTEGER ;
+    sum:INTEGER :=0;
+    arr : ARRAY_OF INTEGER ;
+    count : INTEGER :=1 ;
+BEGIN
+    FOR i FROM 0 TO tab1.length -1 STEP step 1 DO
+        Read(tab1[i])
+    END_FOR
+    FOR j FROM 0 TO tab2.length-1 STEP step 1 DO
+        Read(tab2[j])
+    END_FOR
+    FOR i FROM 0 TO tab1.length-1 STEP step 1 DO
+        htab.insert( tab1[i],1);
+        FOR j FROM 0 TO tab2.length-1 STEP step 1 DO
+            IF (tab1[i] lookup tab2[j] =true) THEN
+            htab.get(tab1[i],2) 
+            END_IF
+        END_FOR
+    END_FOR
+    FOR j FROM 0 TO tab2.length-1 STEP step 1 DO
+        htab.insert( tab1[j],1);
+        FOR i FROM 0 TO tab1.length-1 STEP step 1 DO
+            IF (tab1[j] lookup tab2[i] =true) THEN
+            htab.get(tab1[j],2) 
+            END_IF
+        END_FOR
+    END_FOR
+    
+
+
+
+END

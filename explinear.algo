@@ -1,45 +1,49 @@
 ALGORITHM fulfills
 VAR
-     tab1 : ARRAY_OF INTEGER[5];
-     tab2 : ARRAY_OF INTEGER[4];
-     i,j,sum,x : INTEGER ;
+    tab1 : ARRAY_OF INTEGER[n];
+    tab2 : ARRAY_OF INTEGER[n];
+    i,sum,count : INTEGER ;
 BEGIN
 
-     tab1 := {1,2,3,5,7,8};
-     tab2 := {9,2,6,4,5} ;
-     sum := 0 ;
-     i:= 0;
-     j :=0;
-     x:= 0;
-     FOR i FROM 0 TO tab1.length-1 STEP step 1 DO
+    tab1 := {1,2,3,5,7,8};
+    tab2 := {9,2,6,4,5} ;
+    sum := 0 ;
+    i:= 0;
+    count:=0;
+    read(n)
+    FOR i FROM 0 TO n STEP step 1  DO
+        read tab1[i]
+    END_FOR
+    FOR i FROM 0 TO n STEP step 1  DO
+        read tab2[i]
+    END_FOR
+    FOR i FROM 0 TO tab1.length-1 STEP step 1 DO
 
-        IF (tab1[i]<> tab2[j]) THEN
-            x:= x+ tab1[i] ;
-            else
-                x:=0;
+        WHILE (tab1[i]<>tab2[count] and count <= set2.length-1) DO
+            count+=1
+        END_WHILE
+        IF (count=tab2.length-1) THEN
+            sum := sum+tab1[i]
+            ELSE
+                FOR i FROM 0 TO tab2.length-1 STEP step 1 DO
+                WHILE (tab2[count]<>tab1[i] and count <= set1.length-1) DO
+                count+=1
+                END_WHILE
+                IF (count=tab1.length-1) THEN
+                sum := sum+tab2[count]
+                END_IF
+                END_FOR
+
         END_IF
-        sum := sum + x 
-        i := i+1
-     END_FOR
-     FOR j FROM 0 TO tab2.length-1 STEP step 1 DO
-
-        IF (tab2[j]<> tab1[i]) THEN
-            x:= x+ tab2[j] ;
-            else
-                x := 0;
-        END_IF
-        sum := sum + x 
-        j := j+1
-     END_FOR
-    Read (sum)
-
+        
+    END_FOR
      
-
 END
 ALGORITHM tab2
 VAR
     tab1 : ARRAY_OF INTEGER[a];
     tab2 : ARRAY_OF INTEGER[b];
+    
     htab : HASH_TABLE<INTEGER,INTEGER>;
     i,j,a,b,el : INTEGER ;
     sum:INTEGER :=0;
